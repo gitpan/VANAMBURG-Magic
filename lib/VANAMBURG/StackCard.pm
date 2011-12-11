@@ -18,8 +18,5 @@ card is located in the stack.
 
 has 'stack_number' => ( isa => 'Int', is => 'ro', required => 1 );
 
-sub create_from_abbreviation{
-	my ($class, $abbrev) = @_;
-	
-}
+
 1;

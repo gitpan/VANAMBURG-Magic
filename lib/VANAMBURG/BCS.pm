@@ -21,6 +21,13 @@ L<VANAMBURG::SHoCkeDPacket>
 L<VANAMBURG::Packet>
 =cut
 
+
+=head2 BUILD
+
+Initialize the BCS order in this packet of cards.
+
+=cut 
+
 sub BUILD {
 	my $self = shift;
 

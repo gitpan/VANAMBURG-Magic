@@ -1,6 +1,22 @@
 package VANAMBURG::RandomNumbers;
 use List::Util qw/shuffle/;
 
+
+=head1 VANAMBURG::RandomNumbers
+
+Random number generators specifically useful for card magic
+simulations.
+
+=cut
+
+=head2 random_stacknumbers
+
+   my @ten_selections = $random_stacknumbers(10);
+
+Returns an array of numbers having the value of 1 through 52.
+
+=cut
+
 sub random_stacknumbers {
 	my ( $class, $number_of_numbers ) = @_;
 
@@ -19,6 +35,12 @@ sub random_stacknumbers {
 	return shuffle @results;
 }
 
+
+=head2 number_between
+
+	my $number = number_between(1,10);
+	
+=cut
 
 sub number_between {
     my ( $low, $high ) = @_;

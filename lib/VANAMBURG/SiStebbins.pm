@@ -8,10 +8,24 @@ use VANAMBURG::SuitSingletonCHaSeD;
 use VANAMBURG::SuitSingletonSHoCkeD;
 use VANAMBURG::StackCard;
 
+=head1 VANAMBURG::SiStebbins
+
+A class to represent the classic Si Stebbins stack.  CHaSeD and SHoCkeD 
+orders are optional as well as a step of 3 or 4
+
+=cut
+
 subtype 'SuitOrder', as 'Str', where { $_ =~ /(CHaSeD|SHoCkeD)/ };
 
 has 'step'       => ( is => 'ro', isa => 'Int',       default => 3 );
 has 'suit_order' => ( is => 'ro', isa => 'SuitOrder', default => 'CHaSeD' );
+
+=head2 BUILD
+
+Post constructor Moose method to setup instance of a Packet
+in the orrect Si Stebbins suit order (SHoCkeD or CHaSeD)
+
+=cut
 
 sub BUILD {
 	my $self = shift;
@@ -31,6 +45,16 @@ sub BUILD {
 
 }
 
+=head2 suit_singleton
+
+A short cut to the correct SuitSingleton class. 
+
+Returns either VANAMBURG::SuitSingletonCHaSeD->instance() or
+VANAMBURG::SuitSingletonSHoCkeD->instance() depending on the 
+value of $self->suit_order
+	
+=cut
+ 
 sub suit_singleton {
 	my $self = shift;
 	if ( $self->suit_order eq 'CHaSeD' ) {
