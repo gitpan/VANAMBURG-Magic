@@ -11,8 +11,8 @@ useful for stacks such as memorized decks.
 
 =head2 stack_number
 
-The number ( 1 through number of cards in packet or deck) where this
-card is located in the stack.
+The location ( 1 through number of cards in packet or deck) where this
+card is located in the stack when the stack is ordered.
 
 =cut
 

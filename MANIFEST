@@ -4,7 +4,6 @@ Makefile.PL
 README
 lib/VANAMBURG/BCS.pm
 lib/VANAMBURG/Card.pm
-lib/VANAMBURG/CHaSeDOrder.pm
 lib/VANAMBURG/FaceValue.pm
 lib/VANAMBURG/FaceValueSingleton.pm
 lib/VANAMBURG/Magic.pm
@@ -19,8 +18,8 @@ lib/VANAMBURG/SuitSingleton.pm
 lib/VANAMBURG/SuitSingletonCHaSeD.pm
 lib/VANAMBURG/SuitSingletonSHoCkeD.pm
 lib/VANAMBURG/PacketFactory.pm
-scripts/memdecktrainer
-scripts/rosarytrainer
+scripts/memdeckrandom
+scripts/memdecksequence
 t/00-load.t
 t/01-suit.t
 t/02-facevalue.t

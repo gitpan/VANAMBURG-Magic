@@ -13,7 +13,7 @@ Version 0.03
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 
 =head1 SYNOPSIS
@@ -62,17 +62,15 @@ By Sam Hughes at his site: http://qntm.org/files/perl/perl.html
 	
 =head2 DO STUFF WITH PACKETS
 	
-	See docuentation for L<VANAMBURG::Packet> for all the operations available for the stacks shown above.
+See docuentation for L<VANAMBURG::Packet> for all the operations available for the stacks shown above.
 	
-=head1 A FEW OF THE MODULES INCLUDED 
+=head1 A FEW OF THE IMPORTANT MODULES INCLUDED 
 
 =over
 
 =item L<VANAMBURG::Packet>
 
-=item L<VANAMBURG::BCS>
-
-=item L<VANAMBURG::SiStebbins>
+=item L<VANAMBURG::PacketFactory>
 
 =item L<VANAMBURG::Card>
 
@@ -91,62 +89,136 @@ and more ...
 
 Three training scripts are installed on your system when this module is installed.
 
-=head2 memdecktrainer
+=head2 memdeckrandom
 
-The memdecktrainer script helps the user to train in memorizing a popular stack, or help keep a memorized deck fresh in memory.  Currently memdecktrainer 
-only Richard Osterlinds "Breakthrough Card System".  This rosary stack will not be explained here, nor will any peg memory systems.  However, if you
-are using a system, such as that provided by Harry Lorrayne, you will find this script useful in working on identifying cards based on stack numbers, or 
-stack numbers based on the name of a card.
+The memdeckrandom script helps train in memory work by offering 10 random cards.  The user can choose
+from 9 stacks and can be trained by either entering the stack number for a card, or entering the
+card for a given stack number.
 
+Example session 1:
 
-Example session:
-
-	gordon@gordon-LX6810-01$ memdecktrainer 
+	$ memdeckrandom 
 	
-	BCS Trainer Menu
+	Deck Menu
+	======================
+	Enter 1 for Breakthrough Card System
+	Enter 2 for Aronson Stack
+	Enter 3 for Tamariz Mnemonica
+	Enter 4 for Joyal SHoCked
+	Enter 5 for Joyal CHaSeD
+	Enter 6 for Si Stebbins CHaSed  (step = 3)
+	Enter 7 for Si Stebbins CHaSed  (step = 4)
+	Enter 8 for Si Stebbins SHoCkeD (step = 3)
+	Enter 9 for Si Stebbins SHoCkeD (step = 4)
+	
+	
+	Enter choice: 1                                                                                                                                              
+	
+	 Menu
 	======================
 	Enter 1 for Card to Number 
 	Enter 2 for Number to Card
 	Enter q to quit
 	
-	Enter choice: 2
+	Enter choice: 1                                                                                                                                              
+	
+	When presented with a card, enter the stack number and press enter.
+	
+	10 random cards will be presented.
+	
+	
+	Eight of Diamonds: 19                                                                                                                                        
+	Correct
+	Two of Clubs: 46                                                                                                                                             
+	Correct
+	Two of Hearts: 15                                                                                                                                            
+	Correct
+	Two of Diamonds: 11                                                                                                                                          
+	Correct
+	Queen of Clubs: 5                                                                                                                                            
+	Correct
+	Seven of Diamonds: 4                                                                                                                                         
+	Wrong - stack number = 3
+	Four of Spades: 21                                                                                                                                           
+	Correct
+	Ten of Diamonds: 41                                                                                                                                          
+	Correct
+	Seven of Hearts: 47                                                                                                                                          
+	Correct
+	Nine of Hearts: 34                                                                                                                                           
+	Correct
+	
+	bye
+
+
+Example session 2:
+
+	$ memdeckrandom 
+	
+	Deck Menu
+	======================
+	Enter 1 for Breakthrough Card System
+	Enter 2 for Aronson Stack
+	Enter 3 for Tamariz Mnemonica
+	Enter 4 for Joyal SHoCked
+	Enter 5 for Joyal CHaSeD
+	Enter 6 for Si Stebbins CHaSed  (step = 3)
+	Enter 7 for Si Stebbins CHaSed  (step = 4)
+	Enter 8 for Si Stebbins SHoCkeD (step = 3)
+	Enter 9 for Si Stebbins SHoCkeD (step = 4)
+	
+	
+	Enter choice: 1                                                                                                                                              
+	
+	 Menu
+	======================
+	Enter 1 for Card to Number 
+	Enter 2 for Number to Card
+	Enter q to quit
+	
+	Enter choice: 2                                                                                                                                              
 	Enter the abbreviation for the card (AS,JD, 2H, etc)
 	when prompted with a stack number.  
 	
 	10 random stack numbers will be used.
 	
-	Card at 34: 9h
+	Card at 1: as                                                                                                                                                
 	Correct
-	Card at 32: kc
+	Card at 42: js                                                                                                                                               
 	Correct
-	Card at 39: 4h
+	Card at 27: 6h                                                                                                                                               
 	Correct
-	Card at 28: ah
+	Card at 34: 9h                                                                                                                                               
 	Correct
-	Card at 49: 8s
+	Card at 26: ad                                                                                                                                               
 	Correct
-	Card at 2: 3s
+	Card at 28: ah                                                                                                                                               
 	Correct
-	Card at 29: 4d
+	Card at 43: 10h                                                                                                                                              
 	Correct
-	Card at 17: 3d
+	Card at 44: 9s                                                                                                                                               
 	Correct
-	Card at 11: 2d
+	Card at 49: 8s                                                                                                                                               
 	Correct
-	Card at 5: qc
+	Card at 14: kh                                                                                                                                               
 	Correct
 	
 	bye
+	
+
 
 Immediately below I show the source code for this script. If you have computer programming experience, you will easily be able to use it as a guide
 to creating your own scripts.  Teaching Perl is beyond my scope, but if you are interested in learning and need help getting a new script working, please contact
 me at the email address you will find on this page.
 
-=head2 rosarytrainer
+=head2 memdecksequence
+
+The memdecksequence script is useful in training for either proficiency in using common rosary stacks, or 
+in working sequentially through a mem deck.
 
 Example session1:
 
-	gordon@gordon-LX6810-01$ ./rosarytrainer 
+	$ memdecksequence 
 	
 	Rosary Trainer Menu
 	======================
@@ -179,7 +251,7 @@ Example session1:
 
 Example session2:
 
-	gordon@gordon-LX6810-01$ ./rosarytrainer 
+	$ memdecksequence 
 	
 	Rosary Trainer Menu
 	======================
