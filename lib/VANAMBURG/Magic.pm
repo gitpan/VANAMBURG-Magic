@@ -9,23 +9,62 @@ VANAMBURG::Magic - A resource for the discriminating card magician.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 =head1 SYNOPSIS
 
 This package is meant for use by magicians.  Specifically, it intends to make working with rosary stacks and memorized decks easier to learn.  
-It is also aims to make it easier to practice tricks that use complicated stacks in a virtual environment, eliminating the time consuming task
-of restacking between each practice.  
+Scripts, such as those included, make it easier to drill memory of stacks.  It is easier to practice tricks that use complicated stacks, 
+or mathematical principles, in a virtual environment.  By writing simple scripts, such as thouse include in this distribution, 
+a lot of time can be saved during the initial period of learning. Restacking a complex stack with real cards is very time consuming.
 
-The modules contained in this package are object oriented and very easy to include in simple scripts, or as the basis for developing web based 
-applications.  A few scripts are included, but by using this guide, you can create scripts specific to your magical needs.
+The modules contained in this package are object oriented and very easy to include in simple scripts or web applications.If you are not familiar with Perl 
+programming but would like to write simple scripts, I recommend a good starting point is "Learn Perl in about 2 hours 30 minutes"
+By Sam Hughes at his site: http://qntm.org/files/perl/perl.html
 
-=head1 IMPORTANT MODULES INCLUDED 
+=head2 CREATE DECKS, PACKETS OR STACKS
+
+=head3 Built in Stacks
+		
+	# Create stack in Aronson order
+	my $aronson_dec = VANAMBURG::PacketFactory->create_stack_aronson;
+
+	$my $joyal_chased_deck = VANAMBURG::PacketFactory->create_stack_joyal_chased;
+	
+	my $joyal_shocked_deck = VANAMBURG::PacketFactory->create_stack_joyal_shocked;
+	
+	my $tamariz_deck = VANAMBURG::PacketFactory->create_stack_mnemonical;
+	
+	my $bcs = VANAMBURG::PacketFactory->create_stack_breakthrough_card_system;
+	
+	my $si_stebbins = VANAMBURG::PacketFactory->create_si_stebbins_chased_3step; 
+
+	my $si_stebbins_4 = VANAMBURG::PacketFactory->create_si_stebbins_chased_4step; 
+	
+	my $si_stebbins_shocked = VANAMBURG::PacketFactory->create_si_stebbins_shocked_3step;
+	
+	my $si_stebbins_shocked_4 = VANAMBURG::PacketFactory->create_si_stebbins_shocked_4step;
+
+
+=head3 Create arbitrary stacks or packets
+
+	# Create any arbitrary packet, or deck of cards.
+	my $forcing_deck = VANAMBURG::PacketFactory->create_packet("5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D,5D");
+	
+	# Create a stack, where each card has, and retains, a stack number, even when shuffled.
+	my $stack = VANAMBURG::PacketFactory->create_stack("AD,2D,3D,4D,5D,6D,7D,8D,9D,10D,JD,QD,KD");
+	
+	
+=head2 DO STUFF WITH PACKETS
+	
+	See docuentation for L<VANAMBURG::Packet> for all the operations available for the stacks shown above.
+	
+=head1 A FEW OF THE MODULES INCLUDED 
 
 =over
 
@@ -42,10 +81,6 @@ applications.  A few scripts are included, but by using this guide, you can crea
 =item L<VANAMBURG::Suit>
 
 =item L<VANAMBURG::FaceValue>
-
-=item L<VANAMBURG::SuitSingletonCHaSeD>
-
-=item L<VANAMBURG::SuitSingletonSHoCkeD>
 
 =back
 

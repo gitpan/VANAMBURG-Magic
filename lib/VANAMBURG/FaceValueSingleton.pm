@@ -3,6 +3,8 @@ use MooseX::Singleton;
 use VANAMBURG::FaceValue;
 use strict;
 use warnings;
+use Carp qw/croak/;
+use v5.10;
 
 =head2 VANAMBURG::FaceValueSingleton
 
@@ -308,5 +310,34 @@ has 'default_value_cycle' => (
 		return \@result;
 	}
 );
+
+=head2 facevalue_by_abbreviation
+
+Given a face value abbreviation ("A","2", "J", etc.) this method returns the appropriate singleton for the FaceValue.
+
+=cut
+
+sub facevalue_by_abbreviation {
+	my ( $self, $abbrev ) = @_;
+	$abbrev = uc $abbrev;
+	croak "Invalid suit abbreviation: $abbrev" if ( $abbrev !~ /(A|2|3|4|5|6|7|8|9|10|J|Q|K)/ );
+
+	state $lookup = {
+		A  => $self->ace,
+		2  => $self->two,
+		3  => $self->three,
+		4  => $self->four,
+		5  => $self->five,
+		6  => $self->six,
+		7  => $self->seven,
+		8  => $self->eight,
+		9  => $self->nine,
+		10 => $self->ten,
+		J  => $self->jack,
+		Q  => $self->queen,
+		K  => $self->king
+	};
+	return $lookup->{$abbrev};
+}
 
 1;

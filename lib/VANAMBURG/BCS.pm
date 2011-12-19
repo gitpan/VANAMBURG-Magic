@@ -17,7 +17,7 @@ system, as well as shortcuts and routines, at Richard Osterlinds web site:
 http://osterlindmysteries.com/store/ 
 
 This class has all the methods inherited from:
-L<VANAMBURG::SHoCkeDPacket>
+L<VANAMBURG::SHoCkeDOrder>
 L<VANAMBURG::Packet>
 =cut
 

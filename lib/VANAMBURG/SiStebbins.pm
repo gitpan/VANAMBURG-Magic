@@ -1,7 +1,6 @@
 package VANAMBURG::SiStebbins;
 use Moose;
 extends 'VANAMBURG::Packet';
-with 'VANAMBURG::CHaSeDOrder';
 use Moose::Util::TypeConstraints;
 use VANAMBURG::FaceValueSingleton;
 use VANAMBURG::SuitSingletonCHaSeD;

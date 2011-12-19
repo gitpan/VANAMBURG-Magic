@@ -3,6 +3,8 @@ use MooseX::Singleton;
 use VANAMBURG::Suit;
 use strict;
 use warnings;
+use v5.10;
+use Carp qw/croak/;
 
 =head1 VANAMBURG::SuitSingleton
 
@@ -101,5 +103,22 @@ has 'diamond' => (
         );
     }
 );
+
+=head2 suit_by_abbreviation
+
+Given a suit abbreviation ("H","S", etc.) this method returns the appropriate singleton for the suit.
+
+=cut
+
+sub suit_by_abbreviation{
+	my ($self, $abbrev) = @_;
+	
+	$abbrev = uc $abbrev;
+	croak "Invalid suit abbreviation: $abbrev" if ($abbrev !~ /(S|H|C|D)/);
+	
+	state $lookup = {S => $self->spade, H => $self->heart, C => $self->club, D => $self->diamond};
+	return $lookup->{$abbrev};
+}
+
 
 1;

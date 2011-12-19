@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               VANAMBURG-Magic
-version:            0.02
+version:            0.03
 abstract:           A resource for the discriminating card magician.!
 author:
     - "Gordon Van Amburg" <"vanamburg@cpan.org">

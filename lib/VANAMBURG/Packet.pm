@@ -54,18 +54,17 @@ sub shuffle_faro_in {
 	my $self = shift;
 	die "can only faro packets with even number of cards"
 	  unless $self->card_count % 2 == 0;
-	my $half = $self->card_count / 2;  
+	my $half        = $self->card_count / 2;
 	my @top_half    = splice @{ $self->cards }, 0, $half;
 	my @bottom_half = splice @{ $self->cards }, 0, $half;
 	my $new_packet  = VANAMBURG::Packet->new;
-	my $ea = each_array( @bottom_half, @top_half );
+	my $ea          = each_array( @bottom_half, @top_half );
 	while ( my ( $c1, $c2 ) = $ea->() ) {
 		$new_packet->add_card($c1);
 		$new_packet->add_card($c2);
 	}
 	$self->cards( $new_packet->cards );
 }
-
 
 =head2 shuffle_faro_out
 
@@ -75,11 +74,11 @@ more information.
 =cut
 
 sub shuffle_faro_out {
-	my $self        = shift;
-	
+	my $self = shift;
+
 	die "can only faro packets with even number of cards"
 	  unless $self->card_count % 2 == 0;
-	my $half = $self->card_count / 2;  
+	my $half        = $self->card_count / 2;
 	my @top_half    = splice @{ $self->cards }, 0, $half;
 	my @bottom_half = splice @{ $self->cards }, 0, $half;
 	my $new_packet  = VANAMBURG::Packet->new;
@@ -262,7 +261,6 @@ sub bottom_card {
 	$self->get_card( $#{ $self->cards } );
 }
 
-
 =head2 top_card
 
 
@@ -304,4 +302,18 @@ sub print_packet {
 		sub { printf "%02d %s\n", ( $location++, $_->display_name ); } );
 }
 
+=head2 to_abbreviation_csv_string
+
+Returns a representation of the packet as a comma separated list of abbreviations (e.g., "AD,JS,2H")
+which can be passed to L<VANAMBURG::PacketFactory::create_packet> or L<VANAMBURG::PacketFactory::create_stack>
+to later re-instantiate the packet as objects.
+
+=cut
+ 
+sub to_abbreviation_csv_string {
+	my $self = shift;
+	my $result = join ',', map {
+		$_->abbreviation
+	} @{ $self->cards };
+}
 1;

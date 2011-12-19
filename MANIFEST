@@ -18,6 +18,7 @@ lib/VANAMBURG/Suit.pm
 lib/VANAMBURG/SuitSingleton.pm
 lib/VANAMBURG/SuitSingletonCHaSeD.pm
 lib/VANAMBURG/SuitSingletonSHoCkeD.pm
+lib/VANAMBURG/PacketFactory.pm
 scripts/memdecktrainer
 scripts/rosarytrainer
 t/00-load.t
@@ -28,6 +29,7 @@ t/04-suitsingleton.t
 t/05-suitsingletonshocked.t
 t/06-bcs.t
 t/07-sistebbins.t
+t/08-packetfactory.t
 t/boilerplate.t
 t/manifest.t
 t/pod-coverage.t
